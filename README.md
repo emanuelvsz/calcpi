@@ -38,15 +38,15 @@ typedef struct {
 - Em `sum` guardamos o resultado parcial por cada thread.
 
 ### Uso da função `void *calculate_pi(void *arg)`
-- Recebe um ponteiro genérico `*arg` que é convertido para o tipo da struct `ThreadData`.
-- O Atributo `sum` da struct é inicializado em 0.
+- Recebe um ponteiro genérico `*arg` que é convertido para o tipo da struct `ThreadData`;
+- O Atributo `sum` da struct é inicializado em 0;
 - No loop em seguida, a variavel `term` recebe o resultado da série de Leibniz `(pow(-1, i) / (2.0 * i + 1))`.
 
 ### Função `main()`
 - Declaração das variáveis:
 ``` C
-pthread_t threads[NUM_THREADS]; // numero de threads utilizadas
-ThreadData thread_data[NUM_THREADS]; // 
+pthread_t threads[NUM_THREADS]; // array com a quantidade de threads utilizadas
+ThreadData thread_data[NUM_THREADS]; // array das structs das thread
 double total_sum = 0.0; // inicializando a variavel para soma
 double pi_estimate = 0.0; // inicializando variavel que recebera p resultado
 double start_time, end_time; // declaracao as variavaveis que contaram a hora que o calculo começou e terminou
@@ -55,6 +55,10 @@ double total_terms = TERMS_PER_THREAD * NUM_THREADS; // numero total de termos q
 
 ```
 - Chamada das funções:
+  - O primeiro loop percorre o array que intera a quantidade de threads utilizadas.
+    - Define-se o inicio e o fim do intervalo do número de termos;
+    - A thread é criada pela função `pthread_create()`.
+  - Em seguida, no próximo loop, cada thread é interada para aguardar o cálculo e somar o resultado a `total_sum`.
 ```C
 for (int i = 0; i < NUM_THREADS; ++i) {
         thread_data[i].start = i * TERMS_PER_THREAD;
@@ -69,6 +73,12 @@ for (int i = 0; i < NUM_THREADS; ++i) {
 }
 ```
 
+### Últimas declarações e Saídas.
+- `end_time = get_current_time();` obtém o tempo após a execução do cálculo de PI.
+- Atribuimos o total calculado pelas threads para a váriavel `pi_estimate = 4.0 * total_sum;`.
+- Resultado do cálculo: `printf("Valor estimado de π: %.10f\n", pi_estimate)`.
+- Tempo decorrido: `printf("Tempo decorrido: %.6f segundos \n", end_time - start_time)`
+  
 ### Resultados obtidos
 <table>
   <tr>
