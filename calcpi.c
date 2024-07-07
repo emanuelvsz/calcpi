@@ -56,8 +56,7 @@ int main() {
 
     pi_estimate = 4.0 * total_sum;
 
-    printf("Estimated value of PI: %.10f\n", pi_estimate);
-    printf("Elapsed time: %.6f seconds\n", end_time - start_time);
-
+    printf("Valor estimado de π: %.10f\n", pi_estimate);
+    printf("Tempo decorrido: %.6f segundos \n", end_time - start_time);
     return 0;
 }
