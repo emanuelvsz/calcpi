@@ -7,7 +7,7 @@
             "command": "gcc",
             "args": [
                 "-pthread",
-                "main.c",
+                "calcpi.c",
                 "-o",
                 "main",
                 "-lm"
