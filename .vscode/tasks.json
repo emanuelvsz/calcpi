@@ -19,7 +19,6 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "detail": "Generated task by ChatGPT"
         }
     ]
 }
